@@ -1,3 +1,12 @@
+try:
+    dbutils.fs.ls("/")  # Test if running in Databricks
+    IN_DATABRICKS = True
+except NameError:
+    IN_DATABRICKS = False
+    dbutils = None  # Avoid NameError
+
+
+
 def test_bronze_customers_not_empty(spark):
     df = spark.read.format("delta").load(
         "/Volumes/workspace/default/pipeine/bronze/customers"

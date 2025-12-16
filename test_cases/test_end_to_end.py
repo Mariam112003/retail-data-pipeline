@@ -1,3 +1,12 @@
+try:
+    dbutils.fs.ls("/")  # Test if running in Databricks
+    IN_DATABRICKS = True
+except NameError:
+    IN_DATABRICKS = False
+    dbutils = None  # Avoid NameError
+
+
+
 def test_order_count_reconciliation(spark):
     bronze_count = spark.read.format("delta").load(
         "/Volumes/workspace/default/pipeine/bronze/orders"

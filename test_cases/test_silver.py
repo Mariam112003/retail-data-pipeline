@@ -1,3 +1,14 @@
+try:
+    dbutils.fs.ls("/")  # Test if running in Databricks
+    IN_DATABRICKS = True
+except NameError:
+    IN_DATABRICKS = False
+    dbutils = None  # Avoid NameError
+
+
+
+
+
 def test_customers_no_null_ids(spark):
     df = spark.read.format("delta").load(
         "/Volumes/workspace/default/pipeine/silver/customers"

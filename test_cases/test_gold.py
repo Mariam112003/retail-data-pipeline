@@ -1,3 +1,15 @@
+try:
+    dbutils.fs.ls("/")  # Test if running in Databricks
+    IN_DATABRICKS = True
+except NameError:
+    IN_DATABRICKS = False
+    dbutils = None  # Avoid NameError
+
+
+
+
+
+
 def test_gold_orders_by_region_exists(spark):
     df = spark.read.format("delta").load(
         "/Volumes/workspace/default/pipeine/gold/orders_by_region"
