@@ -1,10 +1,7 @@
 from pathlib import Path
 
 def list_paths(path: str):
-    """
-    Returns a list of files/folders in the given path.
-    Works in both Databricks (dbutils) and local environment.
-    """
+   
     try:
         # Try Databricks environment
         return dbutils.fs.ls(path)
