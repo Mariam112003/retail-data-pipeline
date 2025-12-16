@@ -3,6 +3,8 @@ from retail_orders.config import SILVER_PATH, GOLD_PATH
 from retail_orders.utils import write_delta
 
 
+
+
 def run_gold(spark):
     orders = spark.read.format("delta").load(f"{SILVER_PATH}/orders")
     customer_region = spark.read.format("delta").load(f"{SILVER_PATH}/customer_region")
